@@ -9,6 +9,42 @@ Two deployment paths are documented here. Choose the one that matches your situa
 
 Both paths use the same three core files: `index.html`, `styles.css`, `script.js`. Path A also deploys `editorial.html` / `editorial.css` / `editorial.js` as a second page.
 
+> **Just want a live URL fast?** See [GitHub Pages](#github-pages--quickest-live-url) below — it takes about 2 minutes with no CLI or Webflow account required.
+
+---
+
+## GitHub Pages — quickest live URL
+
+The repo at `github.com/JeffKnowlesJr/webflowcomp` already has everything needed. This gets both pages live in ~2 minutes.
+
+### Step 1 — Push the `.nojekyll` file
+
+A `.nojekyll` file at the repo root tells GitHub not to run Jekyll processing on the HTML files. It has already been added to the local workspace. Push it:
+
+```bash
+git add .nojekyll
+git commit -m "Add .nojekyll for GitHub Pages"
+git push
+```
+
+### Step 2 — Enable GitHub Pages in repo settings
+
+1. Go to `https://github.com/JeffKnowlesJr/webflowcomp/settings/pages`
+2. Under **Source**, select **Deploy from a branch**
+3. Set **Branch** to `main`, folder to `/ (root)`
+4. Click **Save**
+
+GitHub will show a banner: *"Your site is ready to be published at..."* — it typically goes live within 60 seconds.
+
+### Step 3 — Your live URLs
+
+```
+https://jeffknowlesjr.github.io/webflowcomp/
+https://jeffknowlesjr.github.io/webflowcomp/editorial.html
+```
+
+The inter-page links (`href="index.html"` and `href="editorial.html"`) work as-is because both files are in the same directory.
+
 ---
 
 ## Prerequisites
