@@ -36,8 +36,8 @@
     </header>
 
     <div class="article-intro">
-      <p>The Webflow ecosystem has quietly grown into something most developers haven't caught up with. As of early 2026, it spans 13 distinct technical domains — from App Gen, which generates full-stack interactive applications from a natural language prompt, to Webflow Cloud, which hosts Next.js and Astro apps on Cloudflare's edge with sub-50ms response times. The question of how to build a website has been replaced by a decision tree: which layer of the stack does Webflow own, which does custom code own, and what does AI generate automatically?</p>
-      <p>This article maps that decision through six stages, from initial research to deployment. Each stage corresponds to a distinct phase of thinking and a distinct set of tools. The goal isn't to cover every feature — it's to help you pick the right tool for the right job, and avoid the expensive mistake of reaching for complexity before checking whether a simpler layer would have solved the problem in fifteen minutes.</p>
+      <p>You build Webflow sites. You start with a template, then spend hours pulling it apart — rewiring the CMS structure, fixing broken filtering, moving animations off timers and onto scroll triggers, extracting custom code scattered across 4 different places. You've already got AWS, GCloud, Firebase, and Cloudflare in your other projects. The question isn't whether Webflow is worth your time. It's which of its 13 capability domains actually reduce the manual customization work you're doing right now, and which ones are just feature sprawl that overlaps with infrastructure you already own.</p>
+      <p>This article maps that decision through six stages, from initial research to deployment. Each stage covers what Webflow does (and what it doesn't), where it complements your existing stack, and where it saves hours of customization work versus where you should stick with what you already know. The goal isn't to cover every feature — it's to help you pick the right tool for the right job, and avoid the expensive mistake of reaching for Webflow complexity when a simpler layer would have solved the problem faster.</p>
     </div>
 
     <!-- ── Stage 01: Research ─────────────────────────────────────────── -->
@@ -46,10 +46,10 @@
         <span class="stage-section__num">01</span>
         <span class="stage-section__name">Research</span>
       </div>
-      <h2 class="stage-section__heading">Map the landscape before you build anything</h2>
+      <h2 class="stage-section__heading">Map the landscape before you start customizing</h2>
       <div class="stage-section__body">
-        <p>Research now means something different than it did two years ago. You're not just deciding whether to use Webflow — you're mapping a 13-domain ecosystem to determine which combination of tools fits your specific build. App Gen handles prompt-built interactive apps. Finsweet Attributes handles CMS filtering, pagination, and search with zero JavaScript. Wized connects Webflow to any REST API. Code Components embed React. Webflow Cloud hosts full-stack Next.js and Astro. Choosing the wrong tool at this stage — reaching for Code Components when Finsweet Attributes would do the job, or wiring up a custom API layer when App Gen would generate it — is the most expensive mistake you can make.</p>
-        <p>Two things have become essential pre-build reading. First: the Webflow changelog. New features ship constantly, and they frequently eliminate the need for custom code that was standard practice six months earlier. Second: the deprecation list. Webflow Logic was disabled June 27, 2025. Webflow Memberships is sunsetting. Any tutorial, StackOverflow answer, or agency documentation referencing either of these features is now misleading. Research means knowing what's current.</p>
+        <p>Research now means something different than it did two years ago. You're not deciding whether Webflow is worth using — you're mapping a 13-domain ecosystem to see which tools reduce the manual template customization you're already doing, and which tools overlap with infrastructure you already own (AWS, GCloud, Firebase, Cloudflare). Finsweet Attributes handles CMS filtering, pagination, and search with zero JavaScript. GSAP (now free) handles animations without code. Claude MCP connects to Cursor for bulk CMS updates and audits. App Gen generates interactive features from a prompt. Code Components embed React when you need complex UI. Webflow Cloud hosts full-stack apps, but so do Cloudflare Pages and AWS Lambda. Understanding the trade-offs — which tool saves hours versus which just moves the problem elsewhere — is the research stage.</p>
+        <p>Two things have become essential pre-build reading. First: the Webflow changelog and ecosystem docs. Features ship constantly, and new ones frequently eliminate the need for custom code that was standard six months earlier. Second: know the constraints. Code Components run in the Shadow DOM (site CSS doesn't apply), have a 50MB cap, and don't access server secrets. Webflow Cloud is good for mount-path integrations with your CMS, but if you're already on Cloudflare or AWS, going headless with the Data API might be simpler. Knowing what's current and what the trade-offs are — that's research.</p>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">Research resources</h3>
@@ -288,10 +288,10 @@
 
     <!-- ── Closing ────────────────────────────────────────────────────── -->
     <section id="closing" class="closing-section">
-      <h2 class="closing-section__heading">Why this page is built with vanilla HTML, CSS, and JavaScript</h2>
-      <p>The <a href="index.html">interactive version of this article</a> uses HTML, CSS, and JavaScript with zero dependencies, no build step, and no framework. This version adds one: a Google Fonts stylesheet for editorial typography. Neither uses React, a bundler, or a CSS preprocessor.</p>
-      <p>That's a deliberate argument. A polished, accessible, interactive experience doesn't require a framework. It requires understanding the platform. <code>IntersectionObserver</code> handles scroll tracking. CSS custom properties handle theming. CSS Grid and Flexbox handle layout. The Webflow ecosystem — App Gen, Code Components, Finsweet, Wized, Webflow Cloud — is the layer you reach for when native web tech genuinely isn't enough. Not before.</p>
-      <p>The decision framework applies to web development generally, not just to Webflow. Start with the simplest tool that does the job. Move up the complexity ladder only when you hit an actual ceiling. The ceiling is higher than most developers assume it is.</p>
+      <h2 class="closing-section__heading">The template customization trap, solved</h2>
+      <p>Webflow's ecosystem doesn't replace developers with AI. It augments your workflow. Finsweet removes filtering boilerplate. GSAP removes animation grunt work. MCP removes content tedium. App Gen removes feature scaffolding. None of these require you to stop using AWS, GCloud, Firebase, or Cloudflare. They're optional force multipliers that stack on top of whatever infrastructure you already own.</p>
+      <p>The template customization trap exists because templates are designed by generalists. But now you have tools to recompose them without rewriting everything. Use them for what they're good at. Ignore the rest. Use your existing stack for what it does better. The ceiling isn't "use Webflow" or "use your stack" — it's knowing which to pick for each specific layer of the problem.</p>
+      <p>Start with the simplest tool that does the job. Move up the complexity ladder only when you hit an actual ceiling. With this ecosystem, the ceiling is way higher than it used to be. And it's lower when you already have half your infrastructure elsewhere. That's the whole point.</p>
     </section>
 
   </article>

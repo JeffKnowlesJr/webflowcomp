@@ -14,8 +14,8 @@ const STAGES = [
     label: 'Research',
     color: '#0ea5e9',
     iconSVG: `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,
-    tagline: 'Map the full capability landscape before writing a line.',
-    description: 'The Webflow ecosystem is now 13 deep domains — App Gen, Webflow Cloud, Data API v2, MCP + Claude Skills, Code Components, GSAP, CLI, Finsweet, Wized, Designer Extensions, Optimize, Ecommerce/Stripe, Headless CMS. Before picking an approach, study the decision framework: App Gen for prompt-built apps, Code Components for complex React UI, Finsweet Attributes for no-code filtering, Wized for REST API connections. Knowing which domain to use is the research stage.',
+    tagline: 'Map the landscape against what you already own.',
+    description: 'The Webflow ecosystem spans 13 deep domains — App Gen, Webflow Cloud, Data API v2, MCP + Claude Skills, Code Components, GSAP, CLI, Finsweet, Wized, Designer Extensions, Optimize, Ecommerce/Stripe, Headless CMS. Your task: identify which tools reduce manual template customization, and which overlap with infrastructure you already own (AWS, GCloud, Firebase, Cloudflare). Finsweet eliminates filtering boilerplate. GSAP (now free) eliminates animation work. MCP in Cursor eliminates content tedium. App Gen eliminates feature scaffolding. Code Components and Webflow Cloud have constraints (Shadow DOM, 50MB cap, no server secrets) that matter when you already have better options elsewhere. Knowing the trade-offs is the research stage.',
     tools: [
       { name: 'KDNuggets', desc: 'Data storytelling formats & modern web presentation techniques' },
       { name: 'Made in Webflow', desc: 'Design inspiration from real production Webflow sites' },
@@ -40,8 +40,8 @@ const STAGES = [
     label: 'AI Generate',
     color: '#8b5cf6',
     iconSVG: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
-    tagline: 'From a prompt to a production app — grounded in your brand.',
-    description: 'App Gen (public beta, free on all plans) is Webflow\'s biggest leap: describe an app in natural language and get production-grade code grounded in your existing design system. Unlike Bolt or Lovable, App Gen starts from your brand\'s operating system — your design variables, CMS schema, and component library. Supports location finders, job boards, pricing calculators, event calendars, multi-step forms, games, and business tools. The AI Site Builder handles site scaffolding (up to 5 pages). Both work alongside Claude\'s MCP connector and its 9 Claude Skills for ongoing management.',
+    tagline: 'Generate features you\'d normally build from scratch.',
+    description: 'App Gen (public beta, free on all plans) cuts feature scaffolding time drastically. Describe what you want in natural language — a location finder, job board, pricing calculator, event calendar, booking flow, multi-step form, or business tool — and get production-grade code grounded in your existing design system. Unlike generic AI builders, App Gen starts from your brand\'s operating system: your color variables, typography, CMS schema, and component library. Claude\'s MCP connector integrates 19 API tools and 9 Claude Skills (bulk CMS update, site audit, link checker, safe publish) that auto-activate in Cursor or Claude Desktop. If you\'re already in Cursor for development, you run these from there — no Webflow UI needed.',
     tools: [
       { name: 'App Gen (beta, free)', desc: 'Full-stack apps from a prompt, grounded in your design system + CMS' },
       { name: 'Webflow AI Site Builder', desc: 'Multi-page site scaffold from a prompt, no code needed' },
@@ -91,8 +91,8 @@ const STAGES = [
     label: 'Build',
     color: '#f59e0b',
     iconSVG: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
-    tagline: 'The right tool for each layer: no-code, low-code, or full code.',
-    description: 'The build stage spans four tool tiers. Finsweet Attributes (200M+ monthly loads, 30+ solutions, zero JS writing — just data attributes) handles CMS filtering, pagination, search, and more. Wized adds a full REST API app layer on top of Webflow without a backend rewrite. Code Components (React, SSR, CMS-bindable) handle complex UI — but note the Shadow DOM limitation: site CSS classes don\'t apply inside components, use 50MB bundle cap, and React Context doesn\'t cross component boundaries (use custom events or localStorage instead). DevLink syncs Webflow designs to a React codebase. Data API v2 provides full CRUD + webhooks for automation.',
+    tagline: 'Know the constraints before picking your tool.',
+    description: 'Four tiers of tools, each with different constraints. Finsweet Attributes (200M+ monthly loads, 30+ solutions, zero JS writing) handles CMS filtering, search, pagination — stop hand-rolling this stuff. GSAP (now free) handles animations. Code Components embed React inside Webflow with SSR and CMS binding — but they run in the Shadow DOM (site CSS doesn\'t apply), have a 50MB bundle cap (entire library), and can\'t access server secrets. If you need a backend layer, Wized connects to REST APIs, but if you already have Cloudflare or AWS, you can build a headless frontend + pull the Webflow CMS API instead. Data API v2 handles CRUD + webhooks for automation. DevLink syncs designs to React if you have a separate codebase.',
     tools: [
       { name: 'Finsweet Attributes v2', desc: '200M+ loads/month; 30+ solutions via HTML data attributes — zero JS' },
       { name: 'Wized', desc: 'App layer for Webflow — connect to any REST API (Xano, Supabase, Airtable, etc.)' },
@@ -168,21 +168,21 @@ const STAGES = [
 // Sourced from the "Decision Framework" table in seed.md (Mar 2026).
 
 const DECISIONS = [
-  { goal: 'Build a whole app from a prompt',              approach: 'App Gen',                           priority: 'high' },
-  { goal: 'Deploy a Next.js or Astro app',                approach: 'Webflow Cloud',                     priority: 'high' },
-  { goal: 'AI-manage your site from Claude or Cursor',    approach: 'Webflow MCP + Claude Skills',        priority: 'high' },
+  { goal: 'Build a whole app from a prompt',              approach: 'App Gen (beta, free)',               priority: 'high' },
+  { goal: 'Bulk update CMS items from Cursor',            approach: 'MCP + Claude Skills (Bulk CMS)',    priority: 'high' },
   { goal: 'Add filtering, search, or load more to CMS',   approach: 'Finsweet Attributes (no code)',      priority: 'high' },
-  { goal: 'Add a complex custom UI component',            approach: 'Code Components (React + SSR)',      priority: 'medium' },
-  { goal: 'Sync design into a React codebase',            approach: 'DevLink',                           priority: 'medium' },
+  { goal: 'You already have edge hosting elsewhere',      approach: 'Go headless with Data API v2',       priority: 'high' },
   { goal: 'Animate without writing code',                 approach: 'Interactions with GSAP (visual)',    priority: 'medium' },
+  { goal: 'Add a complex custom UI component',            approach: 'Code Components (React + SSR)',      priority: 'medium' },
   { goal: 'Advanced scroll, physics, or SVG morphing',    approach: 'Custom GSAP code embed',            priority: 'medium' },
-  { goal: 'Automate CMS content in bulk',                 approach: 'Data API v2 or MCP Bulk CMS Skill', priority: 'medium' },
-  { goal: 'Connect Webflow to any REST API',              approach: 'Wized (low-code app layer)',         priority: 'medium' },
-  { goal: 'Custom Stripe checkout flow',                  approach: 'Webflow Cloud + Stripe Sessions',   priority: 'medium' },
-  { goal: 'A/B test or personalize with code',            approach: 'Webflow Optimize (wf.ready() API)', priority: 'low' },
-  { goal: 'Build a custom tool inside Webflow Designer',  approach: 'Designer Extension (iframe panel)', priority: 'low' },
-  { goal: 'Quick script — analytics, chat, tracking',     approach: 'Custom Code Embed + CDN for large', priority: 'low' },
-  { goal: 'Use Webflow CMS in a separate React app',      approach: 'Headless CMS API + Webflow Cloud',  priority: 'low' },
+  { goal: 'Connect Webflow to your existing API',         approach: 'Custom embed or headless',           priority: 'medium' },
+  { goal: 'Deploy a Next.js or Astro app',                approach: 'Cloudflare Pages or AWS Lambda',    priority: 'medium' },
+  { goal: 'Your backend is already Firebase/Supabase',    approach: 'Data API only for Webflow CMS',     priority: 'medium' },
+  { goal: 'Audit the entire site for issues',             approach: 'MCP Site Audit + Asset Audit',      priority: 'medium' },
+  { goal: 'Sync design into a React codebase',            approach: 'DevLink (design-to-code sync)',     priority: 'low' },
+  { goal: 'A/B test or personalize with code',            approach: 'Webflow Optimize or your tool',    priority: 'low' },
+  { goal: 'Build a custom tool inside Webflow Designer',  approach: 'Designer Extension (niche)',         priority: 'low' },
+  { goal: 'Use Webflow CMS in a separate React app',      approach: 'Headless API (Data API v2)',        priority: 'low' },
 ];
 
 // ─── Shared SVG: external link icon ─────────────────────────────────────────
