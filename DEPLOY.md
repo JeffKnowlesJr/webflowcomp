@@ -16,6 +16,7 @@ Both paths use the same three core files: `index.html`, `styles.css`, `script.js
 1. **A Webflow account** — a free Starter plan works for Path B; Path A requires a site on a paid plan if you want a custom domain
 2. **Node.js 18+** installed locally (required for the Webflow CLI in Path B)
 3. **A public GitHub repository** to host CSS/JS assets for CDN delivery (both paths)
+   - https://github.com/JeffKnowlesJr/webflowcomp
 
 ---
 
@@ -29,7 +30,7 @@ This path publishes the visualization as a page inside your Webflow site. The HT
 git init
 git add index.html styles.css script.js editorial.html editorial.css editorial.js
 git commit -m "Add Webflow+AI pipeline visualization"
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git remote add origin https://github.com/JeffKnowlesJr/webflowcomp.git
 git push -u origin main
 ```
 
@@ -41,19 +42,19 @@ jsDelivr serves any file from a public GitHub repo instantly with no setup. The 
 https://cdn.jsdelivr.net/gh/USERNAME/REPO@BRANCH/FILENAME
 ```
 
-Your four asset URLs (replace `YOUR_USERNAME` and `YOUR_REPO`):
+Your four asset URLs:
 
 ```
-https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/styles.css
-https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/script.js
-https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/editorial.css
-https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/editorial.js
+https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/styles.css
+https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/script.js
+https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/editorial.css
+https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/editorial.js
 ```
 
 Verify each URL loads the correct file in your browser before continuing.
 
 > **Tip:** Use a commit SHA instead of `@main` to pin to an exact version and prevent unintended changes from invalidating the CDN cache:
-> `https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@abc1234/styles.css`
+> `https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@abc1234/styles.css`
 
 ### Step 3 — Create a new Webflow page for the interactive version
 
@@ -67,7 +68,7 @@ Verify each URL loads the correct file in your browser before continuing.
 In **Page Settings → Custom Code → Before `</head>` tag**, paste:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/styles.css">
 ```
 
 Click **Save**.
@@ -86,7 +87,7 @@ The character limit per Code Embed is **8,192 characters**. The HTML body of `in
 In **Page Settings → Custom Code → Before `</body>` tag**, paste:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/script.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/script.js"></script>
 ```
 
 Click **Save**.
@@ -110,7 +111,7 @@ Repeat Steps 3–7 for `editorial.html`:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/editorial.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JeffKnowlesJr/webflowcomp@main/editorial.css">
 ```
 
 - Add the article HTML body content in a Code Embed
