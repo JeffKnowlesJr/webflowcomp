@@ -5,7 +5,7 @@ Two deployment paths are documented here. Choose the one that matches your situa
 | Path | Best for | Time |
 |------|----------|------|
 | [A — Embed into existing Webflow site](#path-a--embed-into-an-existing-webflow-site) | Publishing as a blog post on jkjrdev.com | ~30 min |
-| [B — Webflow Cloud standalone app](#path-b--webflow-cloud-standalone-app) | A dedicated URL at its own path or subdomain | ~45 min |
+| [B — Webflow Cloud standalone app](#path-b--webflow-cloud-standalone-app) | A dedicated URL at its own path or subdomain | ~45 min (works on free tier) |
 
 Both paths use the same three core files: `index.html`, `styles.css`, `script.js`. Path A also deploys `editorial.html` / `editorial.css` / `editorial.js` as a second page.
 
@@ -13,7 +13,7 @@ Both paths use the same three core files: `index.html`, `styles.css`, `script.js
 
 ## Prerequisites
 
-1. **A Webflow account** with a site at your target domain (e.g., jkjrdev.com)
+1. **A Webflow account** — a free Starter plan works for Path B; Path A requires a site on a paid plan if you want a custom domain
 2. **Node.js 18+** installed locally (required for the Webflow CLI in Path B)
 3. **A public GitHub repository** to host CSS/JS assets for CDN delivery (both paths)
 
@@ -133,7 +133,23 @@ Update the "View the interactive version →" link in the editorial embed to poi
 
 ## Path B — Webflow Cloud standalone app
 
-This path deploys the files as a standalone static application on Webflow Cloud, served from Cloudflare's edge. It gives you a dedicated URL (e.g., `pipeline.yourdomain.com` or `yourdomain.com/pipeline`) independent of your main Webflow site.
+This path deploys the files as a standalone static application on Webflow Cloud, served from Cloudflare's edge. It gives you a dedicated URL independent of your main Webflow site.
+
+### Free tier compatibility
+
+Steps 1–3 and Step 5 work on the **free Starter plan**. Step 4 (custom domain) requires a paid plan — see the callout on that step. Here's what you get on free:
+
+| Resource | Free Starter limit |
+|----------|-------------------|
+| Cloud projects per site | 5 |
+| Monthly visits (site-wide) | 1,000 |
+| Deployment log retention | 1 hour |
+| SQLite storage | 100 MB |
+| KV reads/day | 100K |
+| Object storage | 1 GB |
+| Custom domain | **No** — `.webflow.io` subdomain only |
+
+For a low-traffic portfolio piece or demo, the free tier is sufficient. The app mounts at a path on your `*.webflow.io` site (e.g., `yoursite.webflow.io/pipeline`).
 
 ### Step 1 — Install the Webflow CLI
 
@@ -220,7 +236,9 @@ Open `http://localhost:3000/index.html` and confirm the visualization loads.
 webflow cloud deploy -e production --auto-publish
 ```
 
-### Step 4 — Set a custom domain
+### Step 4 — Set a custom domain (paid plan required)
+
+> **Free tier:** Skip this step. Your app is already live at `yoursite.webflow.io/pipeline` after Step 3. The `.webflow.io` URL works for demos and portfolio links. Custom domains require at least the **Basic plan** ($14/mo).
 
 1. In your Webflow dashboard, open the Cloud project settings
 2. Under **Domains**, add `pipeline.yourdomain.com` (or your chosen subdomain)
@@ -231,8 +249,18 @@ webflow cloud deploy -e production --auto-publish
 
 ### Step 5 — Verify the live deployment
 
+**On a paid plan with a custom domain:**
+
 1. Open `https://pipeline.yourdomain.com/index.html`
 2. Open `https://pipeline.yourdomain.com/editorial.html`
+
+**On the free Starter plan:**
+
+1. Open `https://yoursite.webflow.io/pipeline/index.html`
+2. Open `https://yoursite.webflow.io/pipeline/editorial.html`
+
+**Both:**
+
 3. Confirm both pages load fully and the inter-page links between them work
 4. Run Chrome DevTools Lighthouse on both URLs — target 90+ Performance
 
