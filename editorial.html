@@ -48,8 +48,7 @@
       </div>
       <h2 class="stage-section__heading">Map the landscape before you start customizing</h2>
       <div class="stage-section__body">
-        <p>Research now means something different than it did two years ago. You're not deciding whether Webflow is worth using — you're mapping a 13-domain ecosystem to see which tools reduce the manual template customization you're already doing, and which tools overlap with infrastructure you already own (AWS, GCloud, Firebase, Cloudflare). Finsweet Attributes handles CMS filtering, pagination, and search with zero JavaScript. GSAP (now free) handles animations without code. Claude MCP connects to Cursor for bulk CMS updates and audits. App Gen generates interactive features from a prompt. Code Components embed React when you need complex UI. Webflow Cloud hosts full-stack apps, but so do Cloudflare Pages and AWS Lambda. Understanding the trade-offs — which tool saves hours versus which just moves the problem elsewhere — is the research stage.</p>
-        <p>Two things have become essential pre-build reading. First: the Webflow changelog and ecosystem docs. Features ship constantly, and new ones frequently eliminate the need for custom code that was standard six months earlier. Second: know the constraints. Code Components run in the Shadow DOM (site CSS doesn't apply), have a 50MB cap, and don't access server secrets. Webflow Cloud is good for mount-path integrations with your CMS, but if you're already on Cloudflare or AWS, going headless with the Data API might be simpler. Knowing what's current and what the trade-offs are — that's research.</p>
+        <p>Map which of the 13 Webflow domains reduce your manual work and which overlap with infrastructure you already own. Check the changelog and know the constraints (Shadow DOM, 50MB cap, no server secrets in Code Components).</p>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">Research resources</h3>
@@ -75,9 +74,14 @@
       </div>
       <h2 class="stage-section__heading">From a prompt to a production-ready foundation</h2>
       <div class="stage-section__body">
-        <p>App Gen changes the math on what's worth building manually. Launched at Webflow Conf in November 2025 and currently in free public beta on all plans, App Gen takes a natural language description and generates production-grade code grounded in your existing design system — your color variables, CMS schema, component library. The output is actual code, deployed to Webflow Cloud, connected to your CMS in real time. Supported app types include location finders, job boards, pricing calculators, event calendars, multi-step forms, business tools, and interactive games.</p>
-        <p>What separates App Gen from Bolt, Lovable, or v0 is the starting point. Those tools generate generic UI from a blank canvas. App Gen starts from your brand's operating system. Consistency comes built-in because it reads your design tokens before generating anything. Enable it via Workspace Settings → Webflow AI toggle. Enterprise sites can also toggle it per-site in Site Settings.</p>
-        <p>The Webflow AI Site Builder is a separate, older tool — good for scaffolding a multi-page site structure and a basic design system from a prompt (up to 5 pages). Use it for site scaffolding, App Gen for interactive functionality within those pages. Claude's MCP connector layers on 19 API tools and 9 Claude Skills for ongoing management — bulk CMS updates, site audits, link checking, safe-publish workflows. The Skills don't need explicit invocation; they auto-activate when they detect the right context.</p>
+        <p>App Gen generates features from a prompt; MCP + Claude Skills run from Cursor for bulk CMS, audits, and safe publish. We can't run MCP here — below is a sample prompt and output.</p>
+
+        <div class="stage-aside stage-demo">
+          <h3 class="stage-aside__heading">Sample MCP prompt (what you type in Cursor)</h3>
+          <pre class="stage-demo__pre">Add 2 blog posts to the News collection with titles and excerpts.</pre>
+          <h3 class="stage-aside__heading">What the Bulk CMS Skill does</h3>
+          <pre class="stage-demo__pre">Created 2 items in News. IDs: 65f1a..., 65f1b...</pre>
+        </div>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">AI tools at this stage</h3>
@@ -103,8 +107,27 @@
       </div>
       <h2 class="stage-section__heading">Design systems, animations, and collaboration — all free</h2>
       <div class="stage-section__body">
-        <p>Webflow acquired GSAP in 2024. The practical impact landed April 30, 2025, when every GSAP plugin became free — SplitText, ScrollSmoother, ScrambleText, DrawSVG, MorphSVG, all previously requiring a paid Club GreenSock subscription. The new Webflow Interactions are replatformed on GSAP under the hood, with a horizontal timeline UI that handles 80% of animation needs without code: scroll-driven animations via ScrollTrigger, staggered entrance animations for groups of elements, text animation by character, word, or line via SplitText. For the remaining 20% — physics-based motion, SVG morphing, precise scroll percentage scrubbing — write custom GSAP code in a script embed after enabling GSAP in Site Settings.</p>
-        <p>Design system setup is the foundational decision of this stage. Set your color, font, and spacing variables before designing any pages — they propagate everywhere. The most common mistake is designing pages before establishing variables, then spending hours manually correcting inconsistent values across the site. Real-time collaboration is live on all plans (up to 25 concurrent users), so design and development can run in parallel. Flexible components with conditional visibility — showing or hiding elements based on props, CMS fields, or locale — cut the number of component variants you need to maintain dramatically.</p>
+        <p>GSAP is free; Interactions use it. Set design token variables once — they propagate everywhere. Try the token demo below; scroll the box into view to see a scroll-triggered reveal.</p>
+
+        <div class="stage-demo stage-demo--tokens" data-demo="tokens">
+          <h3 class="stage-aside__heading">Design tokens: change one variable</h3>
+          <div class="stage-demo__strip" id="editorial-tokens-strip">
+            <span class="stage-demo__swatch" style="background: var(--demo-token, #ec4899);"></span>
+            <span class="stage-demo__swatch" style="background: var(--demo-token, #ec4899);"></span>
+            <span class="stage-demo__swatch" style="background: var(--demo-token, #ec4899);"></span>
+          </div>
+          <label for="editorial-token-select" class="stage-demo__label">Token:</label>
+          <select id="editorial-token-select" class="stage-demo__select" aria-label="Change design token color">
+            <option value="#ec4899">Pink</option>
+            <option value="#8b5cf6">Violet</option>
+            <option value="#0ea5e9">Sky</option>
+            <option value="#10b981">Emerald</option>
+          </select>
+        </div>
+        <div class="stage-demo">
+          <h3 class="stage-aside__heading">Scroll-triggered reveal</h3>
+          <div class="stage-demo__scroll-box" id="editorial-scroll-reveal">Scroll me into view</div>
+        </div>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">Design tools at this stage</h3>
@@ -130,10 +153,24 @@
       </div>
       <h2 class="stage-section__heading">Four tool tiers, each with a different ceiling</h2>
       <div class="stage-section__body">
-        <p>The build stage spans four distinct tool tiers. The decision of which to use sets both the complexity and the ceiling of what you can ship. The rule of thumb: start at the bottom of the stack and only move up when the tier below genuinely can't do the job.</p>
-        <p>Finsweet Attributes is the first reach. 200 million loads per month. 30+ solutions. Zero JavaScript writing required — add HTML <code>data-</code> attributes to elements and the library handles everything: CMS filtering with AND/OR/grouped logic, load-more pagination, infinite scroll, fuzzy search, custom sort. If your requirement is CMS-driven interactivity, check Finsweet first. The entire library is open source and loaded via a single CDN script tag.</p>
-        <p>Code Components are next. React components that live in Webflow's Components panel, draggable onto any page, configurable via props, bindable to CMS fields, server-side rendered for SEO. They run in the Shadow DOM — site-level CSS classes don't apply inside them. This trips up most developers on their first build. State doesn't cross component boundaries (React Context only works within a single root), so inter-component communication happens via custom browser events or <code>localStorage</code>. Bundle cap is 50MB across the entire library, React only, no fragments.</p>
-        <p>Wized sits between the tiers. It's a JavaScript framework that wraps Webflow's output and adds a visual event/request builder for connecting to any REST API — Xano, Supabase, Airtable, Shopify GraphQL, Firebase. Teams have used it to build enterprise LMS platforms (60,000+ students, 1.2M+ records), AI-powered SaaS products, and headless Shopify stores without abandoning Webflow's visual editor. DevLink is for teams with an existing React codebase: <code>webflow devlink sync</code> exports Webflow components as production-ready React, and re-syncing propagates design updates to code without developer involvement.</p>
+        <p>Finsweet does filtering with data-attributes and zero custom JS. Code Components run in Shadow DOM — site CSS doesn't apply inside. Try both demos below.</p>
+
+        <div class="stage-demo stage-demo--filter" data-demo="filter">
+          <h3 class="stage-aside__heading">Filter a list (Finsweet-style, no custom JS)</h3>
+          <input type="text" class="stage-demo__input" id="editorial-filter-input" placeholder="Type to filter..." aria-label="Filter list">
+          <ul class="stage-demo__list" id="editorial-filter-list">
+            <li class="stage-demo__item" data-name="Research">Research</li>
+            <li class="stage-demo__item" data-name="AI Generate">AI Generate</li>
+            <li class="stage-demo__item" data-name="Design">Design</li>
+            <li class="stage-demo__item" data-name="Build">Build</li>
+            <li class="stage-demo__item" data-name="Enhance">Enhance</li>
+            <li class="stage-demo__item" data-name="Deploy">Deploy</li>
+          </ul>
+        </div>
+        <div class="stage-demo" data-demo="shadow">
+          <h3 class="stage-aside__heading">Shadow DOM — site CSS doesn't apply inside</h3>
+          <div class="stage-demo__shadow-host" id="editorial-shadow-host"></div>
+        </div>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">Build tools at this stage</h3>
@@ -160,9 +197,14 @@
       </div>
       <h2 class="stage-section__heading">Layer on what doesn't break the baseline</h2>
       <div class="stage-section__body">
-        <p>Enhancement is additive. Build the content first in a state that's readable and functional without JavaScript. Then layer in what doesn't break that baseline: A/B tests, personalization, on-device AI, richer animations. The principle sounds obvious but in practice it's where most progressive enhancement breaks down — features get built that depend on JavaScript for core functionality, then break for users who see a flash of unenhanced content on slow connections.</p>
-        <p>Webflow Optimize is a native A/B testing and personalization platform. The browser API is auto-enabled on all Webflow sites — no installation required. The critical placement detail: put <code>wf.ready(callback)</code> in the site-wide <code>&lt;head&gt;</code> custom code field, not in a page-level script or a Code Embed at the bottom of the page. It fires before the DOM renders, which means variation logic executes before any element is painted. Call <code>wf.setAttributes("user", { plan: "pro", role: "developer" })</code> to define visitor segments for personalization targeting. Pipe variation data to your analytics with <code>wf.onVariationRecorded()</code>.</p>
-        <p>Custom code embed limits are firm: 10,000 characters in the site-wide header or footer, 8,192 characters per Code Embed element. For larger scripts, host on jsDelivr (from a public GitHub repo), Cloudflare Pages, or a Webflow Cloud endpoint — the <code>&lt;script src&gt;</code> URL takes zero character budget. Two deprecations that redirect significant investment: Webflow Logic was disabled June 27, 2025 — replace with Webhooks + Make/Zapier, or serverless functions on Webflow Cloud. Webflow Memberships is sunsetting — replace with Memberstack for tiered membership and content gating.</p>
+        <p>Optimize API: <code>wf.ready()</code> in head; <code>wf.setAttributes()</code> for segments. Embed limit 8K per element — host large scripts on a CDN. Logic is deprecated; use Webhooks + Make or Cloud.</p>
+
+        <div class="stage-demo">
+          <h3 class="stage-aside__heading">Webflow Optimize — run in head</h3>
+          <pre class="stage-demo__pre">wf.ready(function() {
+  wf.setAttributes("user", { plan: "pro" });
+});</pre>
+        </div>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">Enhancement tools at this stage</h3>
@@ -188,9 +230,15 @@
       </div>
       <h2 class="stage-section__heading">Audit before you publish, then ship to the edge</h2>
       <div class="stage-section__body">
-        <p>Webflow Cloud is not just hosting — it's a full-stack platform for Next.js and Astro applications deployed on Cloudflare's edge network. Sub-50ms global response times. Native storage: SQLite for relational data, Key-Value Store for edge-cached unstructured data, Object Storage for files. GitHub integration provides native CI/CD — commit triggers auto-deploy. The CLI pipeline: <code>webflow library share --no-input</code> deploys code components, <code>webflow cloud deploy -e production --auto-publish</code> deploys the app and publishes the Webflow site in a single command.</p>
-        <p>Before any publish, run the Claude MCP audit suite. The Site Audit, Asset Audit, and Link Checker Skills auto-activate and scan the entire site for missing alt text, broken links, inconsistent spacing, and underperforming metadata — the kind of sweep that would take a human several hours to do manually. The Safe Publish Skill shows a diff of what changed and runs pre-publish checks before committing. One CDN trick worth memorizing: for live CMS content reads, use <code>api-cdn.webflow.com</code> instead of <code>api.webflow.com</code>. The CDN URL caches identical requests for 5 minutes (2 minutes on Enterprise), and cached calls don't count against rate limits. For a public API built on top of Webflow CMS, this is the difference between hitting limits under load and serving traffic at scale.</p>
-        <p>For Stripe checkout: the Checkout Sessions pattern requires a server-side handler — Webflow Cloud is the natural home. The webhook on <code>checkout.session.completed</code> is the only reliable fulfillment signal. Browser-side callbacks fail when the browser closes before an async payment resolves. Build the webhook handler before the client-side UI; it's the load-bearing piece.</p>
+        <p>Webflow Cloud for Next.js/Astro; CLI for deploy. Use <code>api-cdn.webflow.com</code> for CMS reads — cached, no rate limit on cache hits.</p>
+
+        <div class="stage-demo">
+          <h3 class="stage-aside__heading">Use CDN URL for CMS reads</h3>
+          <p class="stage-demo__label">Avoid</p>
+          <pre class="stage-demo__pre">api.webflow.com/v2/collections/.../items</pre>
+          <p class="stage-demo__label">Use</p>
+          <pre class="stage-demo__pre">api-cdn.webflow.com/v2/collections/.../items</pre>
+        </div>
 
         <aside class="stage-aside">
           <h3 class="stage-aside__heading">Deploy tools at this stage</h3>

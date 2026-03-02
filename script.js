@@ -15,7 +15,7 @@ const STAGES = [
     color: '#0ea5e9',
     iconSVG: `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,
     tagline: 'Map the landscape against what you already own.',
-    description: 'The Webflow ecosystem spans 13 deep domains — App Gen, Webflow Cloud, Data API v2, MCP + Claude Skills, Code Components, GSAP, CLI, Finsweet, Wized, Designer Extensions, Optimize, Ecommerce/Stripe, Headless CMS. Your task: identify which tools reduce manual template customization, and which overlap with infrastructure you already own (AWS, GCloud, Firebase, Cloudflare). Finsweet eliminates filtering boilerplate. GSAP (now free) eliminates animation work. MCP in Cursor eliminates content tedium. App Gen eliminates feature scaffolding. Code Components and Webflow Cloud have constraints (Shadow DOM, 50MB cap, no server secrets) that matter when you already have better options elsewhere. Knowing the trade-offs is the research stage.',
+    description: 'Identify which of the 13 Webflow domains reduce your manual template work and which overlap with infrastructure you already own (AWS, Cloudflare, Firebase).',
     tools: [
       { name: 'KDNuggets', desc: 'Data storytelling formats & modern web presentation techniques' },
       { name: 'Made in Webflow', desc: 'Design inspiration from real production Webflow sites' },
@@ -41,7 +41,7 @@ const STAGES = [
     color: '#8b5cf6',
     iconSVG: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
     tagline: 'Generate features you\'d normally build from scratch.',
-    description: 'App Gen (public beta, free on all plans) cuts feature scaffolding time drastically. Describe what you want in natural language — a location finder, job board, pricing calculator, event calendar, booking flow, multi-step form, or business tool — and get production-grade code grounded in your existing design system. Unlike generic AI builders, App Gen starts from your brand\'s operating system: your color variables, typography, CMS schema, and component library. Claude\'s MCP connector integrates 19 API tools and 9 Claude Skills (bulk CMS update, site audit, link checker, safe publish) that auto-activate in Cursor or Claude Desktop. If you\'re already in Cursor for development, you run these from there — no Webflow UI needed.',
+    description: 'App Gen generates features from a prompt; MCP + Claude Skills run from Cursor for bulk CMS, audits, and safe publish. See sample prompt and output below.',
     tools: [
       { name: 'App Gen (beta, free)', desc: 'Full-stack apps from a prompt, grounded in your design system + CMS' },
       { name: 'Webflow AI Site Builder', desc: 'Multi-page site scaffold from a prompt, no code needed' },
@@ -66,7 +66,7 @@ const STAGES = [
     color: '#ec4899',
     iconSVG: `<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>`,
     tagline: 'Design systems, animations, and real-time collaboration — all free.',
-    description: 'Webflow acquired GSAP in 2024. As of April 30, 2025, every GSAP plugin is 100% free — including previously paid Club GreenSock plugins (SplitText, ScrollSmoother, ScrambleText, DrawSVG, MorphSVG). The new Interactions are replatformed on GSAP with a horizontal timeline UI. Real-time collaboration is live on all plans (up to 25 concurrent users). Flexible components with conditional visibility (show/hide by props, CMS fields, or locale) dramatically cut variant sprawl. Build Designer Extensions for custom tooling inside the Webflow Designer panel itself.',
+    description: 'GSAP is free; Interactions use it under the hood. Set design token variables once — they propagate everywhere. Try the token demo below.',
     tools: [
       { name: 'GSAP — All Plugins Free', desc: 'ScrollTrigger, SplitText, ScrollSmoother, MorphSVG — no subscription needed' },
       { name: 'Webflow Interactions (GSAP-powered)', desc: 'Horizontal timeline UI, staggers, scroll-driven animations, no code' },
@@ -92,7 +92,7 @@ const STAGES = [
     color: '#f59e0b',
     iconSVG: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
     tagline: 'Know the constraints before picking your tool.',
-    description: 'Four tiers of tools, each with different constraints. Finsweet Attributes (200M+ monthly loads, 30+ solutions, zero JS writing) handles CMS filtering, search, pagination — stop hand-rolling this stuff. GSAP (now free) handles animations. Code Components embed React inside Webflow with SSR and CMS binding — but they run in the Shadow DOM (site CSS doesn\'t apply), have a 50MB bundle cap (entire library), and can\'t access server secrets. If you need a backend layer, Wized connects to REST APIs, but if you already have Cloudflare or AWS, you can build a headless frontend + pull the Webflow CMS API instead. Data API v2 handles CRUD + webhooks for automation. DevLink syncs designs to React if you have a separate codebase.',
+    description: 'Finsweet does filtering with data-attributes and zero custom JS. Code Components run in Shadow DOM — site CSS doesn\'t apply inside. Try both demos below.',
     tools: [
       { name: 'Finsweet Attributes v2', desc: '200M+ loads/month; 30+ solutions via HTML data attributes — zero JS' },
       { name: 'Wized', desc: 'App layer for Webflow — connect to any REST API (Xano, Supabase, Airtable, etc.)' },
@@ -118,7 +118,7 @@ const STAGES = [
     color: '#10b981',
     iconSVG: `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`,
     tagline: 'Optimize, personalize, and prune the deprecated.',
-    description: 'Webflow Optimize is a native A/B testing and personalization platform. The browser API (auto-enabled, no install) lets you call wf.ready() to track variations and wf.setAttributes() to define visitor segments for personalization. Custom Code Embeds have firm limits: 10,000 chars site-wide in header/footer, 8,192 chars per embed element — host large scripts on a CDN instead. Two important deprecations: Webflow Logic was disabled June 27, 2025 (replace with Webhooks + Zapier/Make, or Webflow Cloud serverless). Webflow User Accounts/Memberships is being sunset — use Memberstack for membership + content gating.',
+    description: 'Optimize API: wf.ready() in head; wf.setAttributes() for segments. Embed limit 8K per element — host large scripts on a CDN. Logic is deprecated; use Webhooks + Make or Cloud.',
     tools: [
       { name: 'Webflow Optimize', desc: 'A/B testing + personalization; wf.ready(), wf.setAttributes() API' },
       { name: 'Chrome On-Device AI', desc: 'Progressively enhance CMS content with no API calls or latency' },
@@ -144,7 +144,7 @@ const STAGES = [
     color: '#146ef5',
     iconSVG: `<polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>`,
     tagline: 'Edge hosting, full-stack apps, and AI-powered pre-publish audits.',
-    description: 'Webflow Cloud hosts full-stack Next.js and Astro applications on Cloudflare\'s edge network — sub-50ms global response times. Storage options: SQLite, Key-Value Store, Object Storage. Native GitHub CI/CD: commit → auto-deploy. CDN performance trick: use api-cdn.webflow.com instead of api.webflow.com for live CMS reads — responses are cached 5 minutes and cached calls don\'t count against rate limits. Run Claude MCP audits before any publish (Site Audit, Asset Audit, Link Checker skills auto-activate). Stripe Checkout Sessions require a Webflow Cloud server-side handler — the webhook on checkout.session.completed is the only reliable fulfillment signal.',
+    description: 'Webflow Cloud for Next.js/Astro; CLI for deploy. Use api-cdn.webflow.com for CMS reads — cached, no rate limit. See snippet below.',
     tools: [
       { name: 'Webflow Cloud', desc: 'Edge hosting for Next.js/Astro — SQLite, KV, Object Storage, GitHub CI/CD' },
       { name: 'Webflow CLI', desc: 'webflow cloud deploy, webflow library share — CI/CD ready with --no-input flag' },
@@ -169,21 +169,165 @@ const STAGES = [
 
 const DECISIONS = [
   { goal: 'Build a whole app from a prompt',              approach: 'App Gen (beta, free)',               priority: 'high' },
-  { goal: 'Bulk update CMS items from Cursor',            approach: 'MCP + Claude Skills (Bulk CMS)',    priority: 'high' },
-  { goal: 'Add filtering, search, or load more to CMS',   approach: 'Finsweet Attributes (no code)',      priority: 'high' },
-  { goal: 'You already have edge hosting elsewhere',      approach: 'Go headless with Data API v2',       priority: 'high' },
-  { goal: 'Animate without writing code',                 approach: 'Interactions with GSAP (visual)',    priority: 'medium' },
-  { goal: 'Add a complex custom UI component',            approach: 'Code Components (React + SSR)',      priority: 'medium' },
+  { goal: 'Bulk update CMS items from Cursor',            approach: 'MCP + Claude Skills (Bulk CMS)',    priority: 'high', demoStage: 1 },
+  { goal: 'Add filtering, search, or load more to CMS',   approach: 'Finsweet Attributes (no code)',      priority: 'high', demoStage: 3, snippet: 'Add script + data attributes; no custom JS.' },
+  { goal: 'You already have edge hosting elsewhere',      approach: 'Go headless with Data API v2',       priority: 'high', snippet: 'Fetch from api-cdn.webflow.com for cached reads.' },
+  { goal: 'Animate without writing code',                 approach: 'Interactions with GSAP (visual)',    priority: 'medium', demoStage: 2 },
+  { goal: 'Add a complex custom UI component',            approach: 'Code Components (React + SSR)',      priority: 'medium', demoStage: 3, snippet: 'Runs in Shadow DOM — see Build demo.' },
   { goal: 'Advanced scroll, physics, or SVG morphing',    approach: 'Custom GSAP code embed',            priority: 'medium' },
   { goal: 'Connect Webflow to your existing API',         approach: 'Custom embed or headless',           priority: 'medium' },
   { goal: 'Deploy a Next.js or Astro app',                approach: 'Cloudflare Pages or AWS Lambda',    priority: 'medium' },
   { goal: 'Your backend is already Firebase/Supabase',    approach: 'Data API only for Webflow CMS',     priority: 'medium' },
-  { goal: 'Audit the entire site for issues',             approach: 'MCP Site Audit + Asset Audit',      priority: 'medium' },
+  { goal: 'Audit the entire site for issues',             approach: 'MCP Site Audit + Asset Audit',      priority: 'medium', demoStage: 1 },
   { goal: 'Sync design into a React codebase',            approach: 'DevLink (design-to-code sync)',     priority: 'low' },
-  { goal: 'A/B test or personalize with code',            approach: 'Webflow Optimize or your tool',    priority: 'low' },
+  { goal: 'A/B test or personalize with code',            approach: 'Webflow Optimize or your tool',    priority: 'low', demoStage: 4 },
   { goal: 'Build a custom tool inside Webflow Designer',  approach: 'Designer Extension (niche)',         priority: 'low' },
-  { goal: 'Use Webflow CMS in a separate React app',      approach: 'Headless API (Data API v2)',        priority: 'low' },
+  { goal: 'Use Webflow CMS in a separate React app',      approach: 'Headless API (Data API v2)',        priority: 'low', demoStage: 5, snippet: 'Use api-cdn.webflow.com for cached reads.' },
 ];
+
+// ─── Demo config: which stage gets which demo (show, don't tell) ────────────
+const STAGE_DEMOS = {
+  0: null,
+  1: 'mcp-snippets',
+  2: 'tokens',
+  3: 'filter',
+  4: 'wf-snippet',
+  5: 'api-cdn',
+};
+
+// ─── Demo HTML generators ───────────────────────────────────────────────────
+function getDemoHTML(demoType, stageColor) {
+  const borderStyle = stageColor ? `border-left-color: ${stageColor}` : '';
+  switch (demoType) {
+    case 'mcp-snippets':
+      return `
+        <div class="detail-card__demo" style="${borderStyle}">
+          <p class="detail-card__demo-title">Sample MCP prompt (what you type in Cursor)</p>
+          <div class="demo-snippets">
+            <span class="demo-snippets__label">Prompt</span>
+            <pre>Add 2 blog posts to the News collection with titles and excerpts.</pre>
+            <span class="demo-snippets__label">What the Bulk CMS Skill does</span>
+            <pre>Created 2 items in News. IDs: 65f1a..., 65f1b...</pre>
+          </div>
+        </div>`;
+    case 'tokens':
+      return `
+        <div class="detail-card__demo demo-tokens" style="${borderStyle}" data-demo="tokens">
+          <p class="detail-card__demo-title">Design tokens: change one variable, everything updates</p>
+          <div class="demo-tokens__strip" id="demo-tokens-strip">
+            <div class="demo-tokens__swatch" style="background: var(--demo-token, #0ea5e9);"></div>
+            <div class="demo-tokens__swatch" style="background: var(--demo-token, #0ea5e9);"></div>
+            <div class="demo-tokens__swatch" style="background: var(--demo-token, #0ea5e9);"></div>
+          </div>
+          <div class="demo-tokens__control">
+            <label for="demo-token-select">Token value:</label>
+            <select id="demo-token-select" aria-label="Change design token color">
+              <option value="#0ea5e9">Sky</option>
+              <option value="#8b5cf6">Violet</option>
+              <option value="#ec4899">Pink</option>
+              <option value="#f59e0b">Amber</option>
+              <option value="#10b981">Emerald</option>
+              <option value="#146ef5">Blue</option>
+            </select>
+          </div>
+        </div>
+        <div class="detail-card__demo" style="${borderStyle}">
+          <p class="detail-card__demo-title">Scroll-triggered reveal (same idea as GSAP ScrollTrigger)</p>
+          <div class="demo-scroll-reveal" id="demo-scroll-reveal-box">Scroll me into view</div>
+        </div>`;
+    case 'filter':
+      return `
+        <div class="detail-card__demo demo-filter" style="${borderStyle}" data-demo="filter">
+          <p class="detail-card__demo-title">Filter a list — Finsweet does this with data-attributes and zero custom JS</p>
+          <input type="text" class="demo-filter__input" id="demo-filter-input" placeholder="Type to filter..." aria-label="Filter list">
+          <ul class="demo-filter__list" id="demo-filter-list">
+            <li class="demo-filter__item" data-name="Research">Research</li>
+            <li class="demo-filter__item" data-name="AI Generate">AI Generate</li>
+            <li class="demo-filter__item" data-name="Design">Design</li>
+            <li class="demo-filter__item" data-name="Build">Build</li>
+            <li class="demo-filter__item" data-name="Enhance">Enhance</li>
+            <li class="demo-filter__item" data-name="Deploy">Deploy</li>
+          </ul>
+        </div>
+        <div class="detail-card__demo" style="${borderStyle}" data-demo="shadow">
+          <p class="detail-card__demo-title">Code Components run in Shadow DOM — site CSS doesn't apply inside</p>
+          <div class="demo-shadow-host" id="demo-shadow-host">
+            <span class="demo-shadow-label">Inner content styled inside shadow root only.</span>
+          </div>
+        </div>`;
+    case 'wf-snippet':
+      return `
+        <div class="detail-card__demo" style="${borderStyle}">
+          <p class="detail-card__demo-title">Webflow Optimize: run in head so it fires before DOM</p>
+          <div class="demo-snippets">
+            <pre>wf.ready(function() {\n  wf.setAttributes("user", { plan: "pro" });\n});</pre>
+          </div>
+        </div>`;
+    case 'api-cdn':
+      return `
+        <div class="detail-card__demo" style="${borderStyle}">
+          <p class="detail-card__demo-title">Use CDN URL for CMS reads — cached, no rate limit on cache hits</p>
+          <div class="demo-snippets">
+            <span class="demo-snippets__label">Avoid</span>
+            <pre>api.webflow.com/v2/collections/.../items</pre>
+            <span class="demo-snippets__label">Use</span>
+            <pre>api-cdn.webflow.com/v2/collections/.../items</pre>
+          </div>
+        </div>`;
+    default:
+      return '';
+  }
+}
+
+function initDemo(demoType, panel) {
+  if (!panel) return;
+  switch (demoType) {
+    case 'tokens': {
+      const strip = panel.querySelector('#demo-tokens-strip');
+      const select = panel.querySelector('#demo-token-select');
+      if (strip && select) {
+        strip.style.setProperty('--demo-token', select.value);
+        select.addEventListener('change', () => {
+          strip.style.setProperty('--demo-token', select.value);
+        });
+      }
+      const scrollBox = panel.querySelector('#demo-scroll-reveal-box');
+      if (scrollBox) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+          },
+          { threshold: 0.2 }
+        );
+        obs.observe(scrollBox);
+      }
+      break;
+    }
+    case 'filter': {
+      const input = panel.querySelector('#demo-filter-input');
+      const list = panel.querySelector('#demo-filter-list');
+      if (!input || !list) return;
+      const items = list.querySelectorAll('.demo-filter__item');
+      input.addEventListener('input', () => {
+        const q = (input.value || '').trim().toLowerCase();
+        items.forEach(el => {
+          const name = (el.dataset.name || '').toLowerCase();
+          el.classList.toggle('is-hidden', q && name.indexOf(q) === -1);
+        });
+      });
+      break;
+    }
+    case 'shadow': {
+      const host = panel.querySelector('#demo-shadow-host');
+      if (!host || host.shadowRoot) return;
+      const root = host.attachShadow({ mode: 'open' });
+      root.innerHTML = '<style>p { color: var(--c-primary, #146ef5); font-weight: 600; font-size: 0.875rem; margin: 0; }</style><p>This paragraph is inside Shadow DOM. Global CSS does not style it.</p>';
+      break;
+    }
+    default:
+      break;
+  }
+}
 
 // ─── Shared SVG: external link icon ─────────────────────────────────────────
 const EXTERNAL_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -281,6 +425,9 @@ function renderDetailPanel(index) {
       ${EXTERNAL_ICON}
     </a>`).join('');
 
+  const demoType = STAGE_DEMOS[index];
+  const demoHTML = demoType ? getDemoHTML(demoType, stage.color) : '';
+
   panel.innerHTML = `
     <div class="detail-card" style="--stage-color: ${stage.color}" data-stage="${index}">
       <div class="detail-card__bar"></div>
@@ -296,6 +443,7 @@ function renderDetailPanel(index) {
           <h4>Overview</h4>
           <p>${esc(stage.description)}</p>
         </div>
+        ${demoHTML ? `<div class="detail-card__demo-wrap">${demoHTML}</div>` : ''}
         <div class="detail-card__tools-col">
           <h4>Tools &amp; Technologies</h4>
           <div class="tools-grid">${toolsHTML}</div>
@@ -312,6 +460,11 @@ function renderDetailPanel(index) {
         </div>
       </div>
     </div>`;
+
+  if (demoType) {
+    initDemo(demoType, panel);
+    if (demoType === 'filter') initDemo('shadow', panel);
+  }
 
   // Trigger slide-in animation after browser renders initial (invisible) state
   requestAnimationFrame(() => {
@@ -436,11 +589,49 @@ function buildDecisionFramework() {
   const grid = document.getElementById('decision-grid');
   if (!grid) return;
 
-  grid.innerHTML = DECISIONS.map(d => `
-    <div class="decision-item decision-item--${d.priority}">
+  grid.innerHTML = DECISIONS.map((d, i) => {
+    const hasExpand = d.snippet || d.demoStage !== undefined;
+    const expandContent = hasExpand
+      ? `<div class="decision-item__expand" role="region" aria-label="Details">
+          ${d.snippet ? `<p>${esc(d.snippet)}</p>` : ''}
+          ${d.demoStage !== undefined ? `<p><button type="button" class="decision-item__demo-btn" data-stage="${d.demoStage}">See demo</button> — opens stage ${d.demoStage + 1} above.</p>` : ''}
+         </div>`
+      : '';
+    return `
+    <div class="decision-item decision-item--${d.priority}" data-index="${i}" ${hasExpand ? 'tabindex="0" role="button" aria-expanded="false"' : ''}>
       <span class="decision-item__goal">${esc(d.goal)}</span>
       <span class="decision-item__approach">${esc(d.approach)}</span>
-    </div>`).join('');
+      ${expandContent}
+    </div>`;
+  }).join('');
+
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.decision-item__demo-btn');
+    if (btn) {
+      e.preventDefault();
+      const stage = parseInt(btn.dataset.stage, 10);
+      if (!isNaN(stage)) {
+        activateStage(stage);
+        document.getElementById('pipeline-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+    const item = e.target.closest('.decision-item');
+    if (!item || !item.querySelector('.decision-item__expand')) return;
+    item.classList.toggle('is-expanded');
+    item.setAttribute('aria-expanded', item.classList.contains('is-expanded') ? 'true' : 'false');
+  });
+
+  grid.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const item = e.target.closest('.decision-item');
+    if (!item || e.target.closest('.decision-item__demo-btn')) return;
+    e.preventDefault();
+    if (item.querySelector('.decision-item__expand')) {
+      item.classList.toggle('is-expanded');
+      item.setAttribute('aria-expanded', item.classList.contains('is-expanded') ? 'true' : 'false');
+    }
+  });
 }
 
 // ─── Init ─────────────────────────────────────────────────────────────────────

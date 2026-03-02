@@ -100,6 +100,49 @@ function initScrollTracking() {
   stageSections.forEach(section => stageObserver.observe(section));
 }
 
+// ─── Inline demos (tokens, filter, scroll-reveal, shadow) ───────────────────
+
+function initEditorialDemos() {
+  const strip = document.getElementById('editorial-tokens-strip');
+  const tokenSelect = document.getElementById('editorial-token-select');
+  if (strip && tokenSelect) {
+    strip.style.setProperty('--demo-token', tokenSelect.value);
+    tokenSelect.addEventListener('change', () => {
+      strip.style.setProperty('--demo-token', tokenSelect.value);
+    });
+  }
+
+  const scrollBox = document.getElementById('editorial-scroll-reveal');
+  if (scrollBox) {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+      },
+      { threshold: 0.2 }
+    );
+    obs.observe(scrollBox);
+  }
+
+  const filterInput = document.getElementById('editorial-filter-input');
+  const filterList = document.getElementById('editorial-filter-list');
+  if (filterInput && filterList) {
+    const items = filterList.querySelectorAll('.stage-demo__item');
+    filterInput.addEventListener('input', () => {
+      const q = (filterInput.value || '').trim().toLowerCase();
+      items.forEach(el => {
+        const name = (el.dataset.name || '').toLowerCase();
+        el.classList.toggle('is-hidden', q && name.indexOf(q) === -1);
+      });
+    });
+  }
+
+  const shadowHost = document.getElementById('editorial-shadow-host');
+  if (shadowHost && !shadowHost.shadowRoot) {
+    const root = shadowHost.attachShadow({ mode: 'open' });
+    root.innerHTML = '<style>p { color: var(--c-link, #146ef5); font-weight: 600; font-size: 0.875rem; margin: 0; }</style><p>This paragraph is inside Shadow DOM. Global CSS does not style it.</p>';
+  }
+}
+
 // ─── Smooth Scroll on Tab Click ──────────────────────────────────────────────
 
 function initSmoothScroll() {
@@ -133,6 +176,7 @@ function init() {
   buildProgressBar();
   initScrollTracking();
   initSmoothScroll();
+  initEditorialDemos();
 }
 
 if (document.readyState === 'loading') {
